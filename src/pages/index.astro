@@ -1,0 +1,119 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 5);
+---
+
+<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+  <section class="hero">
+    <h1>👋 Welcome to open2nix</h1>
+    <p>
+      Weekly tech posts on Nix, Linux, open source tooling, and homelabs.
+      Extending my <a href="https://open2nix.wordpress.com" target="_blank" rel="noopener">WordPress blog</a>
+      with a fast, version-controlled home for deeper technical dives.
+    </p>
+  </section>
+
+  <section class="recent-posts">
+    <h2>Recent Posts</h2>
+    <ul>
+      {
+        posts.map((post) => (
+          <li>
+            <a href={`/open2nix-site/blog/${post.slug}/`}>
+              <h3>{post.data.title}</h3>
+              <time datetime={post.data.pubDate.toISOString()}>
+                <FormattedDate date={post.data.pubDate} />
+              </time>
+              <p>{post.data.description}</p>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <a class="all-posts" href="/open2nix-site/blog/">View all posts &rarr;</a>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    margin-bottom: 3em;
+    padding-bottom: 2em;
+    border-bottom: 1px solid rgb(var(--gray-light));
+  }
+
+  .hero h1 {
+    font-size: 2.5em;
+    margin-bottom: 0.5em;
+  }
+
+  .hero p {
+    font-size: 1.1em;
+    color: rgb(var(--gray));
+    max-width: 600px;
+  }
+
+  .recent-posts h2 {
+    font-size: 1.5em;
+    margin-bottom: 1.5em;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+  }
+
+  ul li a {
+    text-decoration: none;
+    display: block;
+    padding: 1.5em;
+    background: white;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+    transition: transform 0.2s;
+  }
+
+  ul li a:hover {
+    transform: translateY(-2px);
+  }
+
+  ul li h3 {
+    margin: 0 0 0.25em 0;
+    font-size: 1.2em;
+    color: var(--accent);
+  }
+
+  ul li time {
+    display: block;
+    font-size: 0.85em;
+    color: rgb(var(--gray));
+    margin-bottom: 0.5em;
+  }
+
+  ul li p {
+    margin: 0;
+    color: rgb(var(--gray-dark));
+    font-size: 0.95em;
+  }
+
+  .all-posts {
+    display: inline-block;
+    margin-top: 2em;
+    color: var(--accent);
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  .all-posts:hover {
+    text-decoration: underline;
+  }
+</style>

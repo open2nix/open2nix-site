@@ -1,0 +1,31 @@
+---
+import { SITE_TITLE } from '../consts';
+
+const today = new Date();
+---
+
+<footer>
+  <p>
+    &copy; {today.getFullYear()} {SITE_TITLE} &middot;
+    Built with <a href="https://astro.build" target="_blank" rel="noopener">Astro</a> &middot;
+    Deployed on <a href="https://pages.github.com" target="_blank" rel="noopener">GitHub Pages</a>
+  </p>
+</footer>
+
+<style>
+  footer {
+    padding: 2em 1em 6em;
+    background: linear-gradient(var(--gray-gradient)) no-repeat;
+    color: rgb(var(--gray));
+    text-align: center;
+    font-size: 0.85em;
+  }
+
+  footer a {
+    color: inherit;
+  }
+
+  footer a:hover {
+    color: var(--accent);
+  }
+</style>

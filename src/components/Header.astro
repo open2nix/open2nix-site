@@ -1,0 +1,76 @@
+---
+import HeaderLink from './HeaderLink.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<header>
+  <nav>
+    <h2><a href="/open2nix-site/">{SITE_TITLE}</a></h2>
+    <div class="internal-links">
+      <HeaderLink href="/open2nix-site/">Home</HeaderLink>
+      <HeaderLink href="/open2nix-site/blog">Blog</HeaderLink>
+      <HeaderLink href="/open2nix-site/about">About</HeaderLink>
+    </div>
+    <div class="social-links">
+      <a href="https://open2nix.wordpress.com" target="_blank" rel="noopener noreferrer" title="WordPress blog">
+        WordPress
+      </a>
+      <a href="https://github.com/open2nix" target="_blank" rel="noopener noreferrer" title="GitHub">
+        GitHub
+      </a>
+    </div>
+  </nav>
+</header>
+
+<style>
+  header {
+    margin: 0;
+    padding: 0 1em;
+    background: white;
+    box-shadow: 0 2px 8px rgba(var(--black), 5%);
+  }
+
+  h2 {
+    margin: 0;
+    font-size: 1em;
+  }
+
+  h2 a,
+  h2 a.active {
+    text-decoration: none;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75em 0;
+    gap: 1em;
+  }
+
+  nav a {
+    padding: 0.5em 0.5em;
+    color: var(--black);
+    text-decoration: none;
+    border-bottom: 4px solid transparent;
+  }
+
+  nav a.active {
+    text-decoration: none;
+    border-bottom-color: var(--accent);
+  }
+
+  .social-links,
+  .social-links a {
+    display: flex;
+    gap: 1em;
+    font-size: 0.9em;
+    color: rgb(var(--gray));
+  }
+
+  @media (max-width: 720px) {
+    .social-links {
+      display: none;
+    }
+  }
+</style>

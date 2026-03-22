@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import { SITE_TITLE } from '../../consts';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<BaseLayout
+  title={`Blog — ${SITE_TITLE}`}
+  description="All posts on the open2nix blog — weekly tech posts on Nix, Linux, and open source tooling."
+>
+  <h1>Blog</h1>
+  <p class="subtitle">All posts, newest first.</p>
+  <ul>
+    {
+      posts.map((post) => (
+        <li>
+          <a href={`/open2nix-site/blog/${post.slug}/`}>
+            <div class="post-meta">
+              <FormattedDate date={post.data.pubDate} />
+              {post.data.tags && post.data.tags.length > 0 && (
+                <span class="tags">
+                  {post.data.tags.map((tag) => <span class="tag">#{tag}</span>)}
+                </span>
+              )}
+            </div>
+            <h2>{post.data.title}</h2>
+            <p>{post.data.description}</p>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>
+
+<style>
+  h1 {
+    font-size: 2em;
+    margin-bottom: 0.25em;
+  }
+
+  .subtitle {
+    color: rgb(var(--gray));
+    margin-bottom: 2em;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+  }
+
+  ul li a {
+    display: block;
+    text-decoration: none;
+    padding: 1.5em;
+    background: white;
+    border-radius: 8px;
+    border-left: 4px solid transparent;
+    box-shadow: 0 2px 4px rgba(var(--gray), 20%);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  ul li a:hover {
+    border-left-color: var(--accent);
+    transform: translateX(4px);
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    font-size: 0.85em;
+    color: rgb(var(--gray));
+    margin-bottom: 0.5em;
+  }
+
+  .tags {
+    display: flex;
+    gap: 0.4em;
+  }
+
+  .tag {
+    background: rgb(var(--gray-light));
+    padding: 0.1em 0.4em;
+    border-radius: 3px;
+    font-size: 0.9em;
+  }
+
+  ul li h2 {
+    margin: 0 0 0.4em 0;
+    font-size: 1.3em;
+    color: rgb(var(--black));
+  }
+
+  ul li p {
+    margin: 0;
+    color: rgb(var(--gray));
+    font-size: 0.95em;
+  }
+</style>

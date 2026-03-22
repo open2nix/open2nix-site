@@ -1,0 +1,19 @@
+{
+  "name": "open2nix-site",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "deploy": "npm run build"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^3.0.0",
+    "@astrojs/rss": "^4.0.0",
+    "@astrojs/sitemap": "^3.0.0",
+    "astro": "^4.0.0"
+  }
+}

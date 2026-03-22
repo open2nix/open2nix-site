@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<BaseLayout
+  title={`About — ${SITE_TITLE}`}
+  description="About open2nix — a weekly tech blog covering Nix, Linux, homelabs, and open source tooling."
+>
+  <h1>About</h1>
+  <p>
+    Hi, I'm open2nix — a Linux enthusiast and open source fan with a focus on reproducible
+    systems and minimal tooling.
+  </p>
+  <p>
+    This blog is where I write about things I'm learning, building, or fixing — primarily in
+    the Nix ecosystem, but also broader Linux and DevOps topics.
+  </p>
+
+  <h2>Topics</h2>
+  <ul>
+    <li><strong>Nix &amp; NixOS</strong> — flakes, home-manager, reproducible dev environments</li>
+    <li><strong>Linux</strong> — system configuration, performance tuning, scripting</li>
+    <li><strong>Homelabs</strong> — self-hosted services, containers, networking</li>
+    <li><strong>Open Source</strong> — tools I use and contribute to</li>
+    <li><strong>DevOps</strong> — CI/CD pipelines, GitOps workflows, observability</li>
+  </ul>
+
+  <h2>Elsewhere</h2>
+  <ul>
+    <li>WordPress: <a href="https://open2nix.wordpress.com" target="_blank" rel="noopener">open2nix.wordpress.com</a></li>
+    <li>GitHub: <a href="https://github.com/open2nix" target="_blank" rel="noopener">github.com/open2nix</a></li>
+  </ul>
+</BaseLayout>
