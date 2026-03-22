@@ -3,7 +3,7 @@ title: 'Getting Started with Claude Code: AI Pair Programming That Actually Gets
 description: "A hands-on look at Claude Code — Anthropic's CLI coding agent. Installation, key features, real-world use cases, and honest gotchas from someone who uses it daily."
 pubDate: '2026-03-22'
 tags: ['claude', 'ai', 'devtools', 'productivity']
-heroImage: '/open2nix-site/blog-placeholder.jpg'
+heroImage: '/blog-placeholder.jpg.svg'
 ---
 
 I'll be honest — I was skeptical of AI coding tools for a long time. Most of them feel like a fancy autocomplete that confidently writes wrong code. Claude Code is different, and after a few weeks of integrating it into my daily workflow, I think it's worth writing up properly.
